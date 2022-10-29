@@ -14,6 +14,7 @@ class MainPage:
     scroll = "arguments[0].scrollIntoView();"  # Скрипт для скролла
     scooter_button = [By.XPATH, '//a[2]/img']  # Кнопка "Самокат"
     yandex_button = [By.XPATH, '//a[1]/img']  # Кнопка "Яндекс"
+    cookie_button = (By.XPATH, ".//*[@id='rcc-confirm-button']")  # Кнопка с куки
 
     # кнопки вопросов
     faq_1 = [By.XPATH, '//div[@id="accordion__heading-0"]']
@@ -36,9 +37,15 @@ class MainPage:
     def __init__(self, driver):
         self.driver = driver
 
+    def site(self):
+        self.driver.get(MainPage.url)
+
+    def click_cookie(self):
+        return self.driver.find_element(*self.cookie_button).click()
+
     @allure.step('ждем пока прогрузится заголовок "Самокат"')
     def wait_header(self):
-        return WebDriverWait(self.driver, 3).until(
+        WebDriverWait(self.driver, 5).until(
             expected_conditions.visibility_of_element_located(self.header_scooter))
 
     @allure.step('выполняем скролл до первой кнопки вопроса')
@@ -56,7 +63,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с первым вопросом появится')
     def wait_button_faq_1(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_1))
+            expected_conditions.element_to_be_clickable(self.faq_1))
 
     @allure.step('нажимаем на кнопку первого вопроса')
     def click_button_faq_1(self):
@@ -75,7 +82,7 @@ class MainPage:
     @allure.step('ждем когда кнопка со вторым вопросом появится')
     def wait_button_faq_2(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_2))
+            expected_conditions.element_to_be_clickable(self.faq_2))
 
     @allure.step('нажимаем на кнопку второго вопроса')
     def click_button_faq_2(self):
@@ -94,7 +101,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с третьим вопросом появится')
     def wait_button_faq_3(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_3))
+            expected_conditions.element_to_be_clickable(self.faq_3))
 
     @allure.step('нажимаем на кнопку третьего вопроса')
     def click_button_faq_3(self):
@@ -113,7 +120,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с четвертым вопросом появится')
     def wait_button_faq_4(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_4))
+            expected_conditions.element_to_be_clickable(self.faq_4))
 
     @allure.step('нажимаем на кнопку четвертого вопроса')
     def click_button_faq_4(self):
@@ -132,7 +139,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с пятым вопросом появится')
     def wait_button_faq_5(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_5))
+            expected_conditions.element_to_be_clickable(self.faq_5))
 
     @allure.step('нажимаем на кнопку пятого вопроса')
     def click_button_faq_5(self):
@@ -151,7 +158,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с шестым вопросом появится')
     def wait_button_faq_6(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_6))
+            expected_conditions.element_to_be_clickable(self.faq_6))
 
     @allure.step('нажимаем на кнопку шестого вопроса')
     def click_button_faq_6(self):
@@ -170,7 +177,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с седьмым вопросом появится')
     def wait_button_faq_7(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_7))
+            expected_conditions.element_to_be_clickable(self.faq_7))
 
     @allure.step('нажимаем на кнопку седьмого вопроса')
     def click_button_faq_7(self):
@@ -189,7 +196,7 @@ class MainPage:
     @allure.step('ждем когда кнопка с восьмым вопросом появится')
     def wait_button_faq_8(self):
         return WebDriverWait(self.driver, 3).until(
-            expected_conditions.visibility_of_element_located(self.faq_8))
+            expected_conditions.element_to_be_clickable(self.faq_8))
 
     @allure.step('нажимаем на кнопку восьмого вопроса')
     def click_button_faq_8(self):
